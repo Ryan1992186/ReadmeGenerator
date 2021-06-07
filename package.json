@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "readmegenerator",
+=======
+  "name": "ReadmeGenerator",
+>>>>>>> 3679bbabccf47ef2cd41d17515654cd6c0c9f372
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,6 +14,10 @@
     "type": "git",
     "url": "git+https://github.com/Ryan1992186/ReadmeGenerator.git"
   },
+<<<<<<< HEAD
+=======
+  "keywords": [],
+>>>>>>> 3679bbabccf47ef2cd41d17515654cd6c0c9f372
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -18,6 +26,12 @@
   "homepage": "https://github.com/Ryan1992186/ReadmeGenerator#readme",
   "dependencies": {
     "axios": "^0.21.1",
+<<<<<<< HEAD
     "inquirer": "^8.1.0"
+=======
+    "fs": "0.0.1-security",
+    "inquirer": "^8.1.0",
+    "util": "^0.12.4"
+>>>>>>> 3679bbabccf47ef2cd41d17515654cd6c0c9f372
   }
 }

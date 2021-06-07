@@ -8,6 +8,7 @@ const generateMarkdown = require('./generateMarkdown.js');
 
 // TODO: Create an array of questions for user input
 const questions = [ 
+
     {
         type: 'input',
         message: 'What is your Github Username?',
@@ -55,6 +56,7 @@ const questions = [
                 return console.log("A valid description is required.");
             }
             return true;
+
         } 
     },
     {
@@ -93,7 +95,7 @@ function writeToFile(fileName, data) {
         if (err) {
           return console.log(err);
         }
-      
+    
         console.log("Yay!!! Your README.md file has been generated")
     });
 }
@@ -109,7 +111,7 @@ async function init() {
         const userResponses = await inquirer.prompt(questions);
         console.log("Your responses: ", userResponses);
         console.log("Thank you for your response! I am grabbing your github data now!");
-    
+
         // Call GitHub api for user info
         const userInfo = await api.getUser(userResponses);
         console.log("Your GitHub user information: ", userInfo);
