@@ -1,11 +1,10 @@
 //All external packages
 const inquirer = require('inquirer');
 const fs = require('fs');
-const util = require('util');
+const ReadmeGenerator = require('util');
 
 const api = require('./api.js');
-const ReadmeGenerator = require('./generateMarkdown.js');
-// const generateMarkdown = require('./generateMarkdown.js');
+const generateMarkdown = require('./generateMarkdown.js');
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -100,7 +99,7 @@ function writeToFile(fileName, data) {
     });
 }
 
-// const writeFileAsync = generateMarkdown.promisify(writeToFile);
+const writeFileAsync = ReadmeGenerator.promisify(writeToFile);
 
 // TODO: Create a function to initialize app
 
@@ -118,7 +117,7 @@ async function init() {
 
         // Pass Inquirer userResponses and GitHub userInfo to generateMarkdown
         console.log("Generating your README!")
-        const markdown = ReadmeGenerator(userResponses, userInfo);
+        const markdown = generateMarkdown(userResponses, userInfo);
         console.log(markdown);
 
         // Write markdown to file
