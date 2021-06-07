@@ -3,13 +3,13 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
 
-const api = require('./homework-09/ReadmeGenerator/api.js');
-const generateMarkdown = require('./homework-09/ReadmeGenerator/generateMarkdown.js');
+const api = require('./api.js');
+const ReadmeGenerator = require('./generateMarkdown.js');
+// const generateMarkdown = require('./generateMarkdown.js');
 
 // TODO: Create an array of questions for user input
-const questions = [ 
-    inquirer
-    .prompt ([
+const questions = [
+
     {
         type: 'input',
         message: 'What is your Github Username?',
@@ -57,7 +57,7 @@ const questions = [
                 return console.log("A valid description is required.");
             }
             return true;
-        } 
+        }
     },
     {
         type: 'input',
@@ -85,23 +85,22 @@ const questions = [
         choices: ['GNU AGPLv3', 'GNU GPLv3', 'GNU LGPLv3', 'Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense'],
         name: 'license'
     }
-    
- ]), 
-    ];
+
+];
 
 // TODO: Create a function to write README file
 
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, err => {
         if (err) {
-          return console.log(err);
+            return console.log(err);
         }
-      
+
         console.log("Yay!!! Your README.md file has been generated")
     });
 }
 
-const writeFileAsync = ReadmeGenerator.promisify(writeToFile);
+// const writeFileAsync = generateMarkdown.promisify(writeToFile);
 
 // TODO: Create a function to initialize app
 
@@ -112,16 +111,16 @@ async function init() {
         const userResponses = await inquirer.prompt(questions);
         console.log("Your responses: ", userResponses);
         console.log("Thank you for your response! I am grabbing your github data now!");
-    
+
         // Call GitHub api for user info
         const userInfo = await api.getUser(userResponses);
         console.log("Your GitHub user information: ", userInfo);
-    
+
         // Pass Inquirer userResponses and GitHub userInfo to generateMarkdown
         console.log("Generating your README!")
-        const markdown = generateMarkdown(userResponses, userInfo);
+        const markdown = ReadmeGenerator(userResponses, userInfo);
         console.log(markdown);
-    
+
         // Write markdown to file
         await writeFileAsync('ExampleREADME.md', markdown);
 
